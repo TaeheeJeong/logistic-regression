@@ -1,0 +1,91 @@
+# logistic regression output 
+
+                           Logit Regression Results                           
+==============================================================================
+Dep. Variable:               life_bin   No. Observations:                  171
+Model:                          Logit   Df Residuals:                      169
+Method:                           MLE   Df Model:                            1
+Date:                Mon, 18 Jul 2016   Pseudo R-squ.:                 0.06840
+Time:                        13:05:29   Log-Likelihood:                -107.79
+converged:                       True   LL-Null:                       -115.70
+                                        LLR p-value:                 6.939e-05
+==================================================================================
+                     coef    std err          z      P>|z|      [95.0% Conf. Int.]
+----------------------------------------------------------------------------------
+Intercept         -0.5121      0.276     -1.856      0.063        -1.053     0.029
+alcconsumption     0.1370      0.037      3.701      0.000         0.064     0.210
+==================================================================================
+Odds Ratios
+Intercept        0.60
+alcconsumption   1.15
+dtype: float64
+                Lower CI  Upper CI   OR
+Intercept           0.35      1.03 0.60
+alcconsumption      1.07      1.23 1.15
+
+                           Logit Regression Results                           
+==============================================================================
+Dep. Variable:               life_bin   No. Observations:                  171
+Model:                          Logit   Df Residuals:                      168
+Method:                           MLE   Df Model:                            2
+Date:                Mon, 18 Jul 2016   Pseudo R-squ.:                  0.4904
+Time:                        12:22:25   Log-Likelihood:                -58.957
+converged:                       True   LL-Null:                       -115.70
+                                        LLR p-value:                 2.268e-25
+===================================================================================
+                      coef    std err          z      P>|z|      [95.0% Conf. Int.]
+-----------------------------------------------------------------------------------
+Intercept          -2.1421      0.438     -4.890      0.000        -3.001    -1.283
+alcconsumption      0.0031      0.051      0.060      0.952        -0.096     0.103
+incomeperperson     0.0011      0.000      5.117      0.000         0.001     0.001
+===================================================================================
+                 Lower CI  Upper CI   OR
+Intercept            0.05      0.28 0.12
+alcconsumption       0.91      1.11 1.00
+incomeperperson      1.00      1.00 1.00
+
+
+                           Logit Regression Results                           
+==============================================================================
+Dep. Variable:               life_bin   No. Observations:                  171
+Model:                          Logit   Df Residuals:                      168
+Method:                           MLE   Df Model:                            2
+Date:                Mon, 18 Jul 2016   Pseudo R-squ.:                  0.2893
+Time:                        12:23:52   Log-Likelihood:                -82.225
+converged:                       True   LL-Null:                       -115.70
+                                        LLR p-value:                 2.889e-15
+==================================================================================
+                     coef    std err          z      P>|z|      [95.0% Conf. Int.]
+----------------------------------------------------------------------------------
+Intercept         -3.4227      0.586     -5.846      0.000        -4.570    -2.275
+alcconsumption     0.0792      0.042      1.883      0.060        -0.003     0.162
+urbanrate          0.0624      0.010      5.972      0.000         0.042     0.083
+==================================================================================
+                Lower CI  Upper CI   OR
+Intercept           0.01      0.10 0.03
+alcconsumption      1.00      1.18 1.08
+urbanrate           1.04      1.09 1.06
+
+
+                           Logit Regression Results                           
+==============================================================================
+Dep. Variable:               life_bin   No. Observations:                  171
+Model:                          Logit   Df Residuals:                      167
+Method:                           MLE   Df Model:                            3
+Date:                Mon, 18 Jul 2016   Pseudo R-squ.:                  0.4988
+Time:                        12:35:21   Log-Likelihood:                -57.987
+converged:                       True   LL-Null:                       -115.70
+                                        LLR p-value:                 7.437e-25
+===================================================================================
+                      coef    std err          z      P>|z|      [95.0% Conf. Int.]
+-----------------------------------------------------------------------------------
+Intercept          -2.8273      0.684     -4.135      0.000        -4.167    -1.487
+alcconsumption     -0.0068      0.052     -0.130      0.897        -0.109     0.096
+incomeperperson     0.0009      0.000      4.189      0.000         0.000     0.001
+urbanrate           0.0204      0.015      1.390      0.165        -0.008     0.049
+===================================================================================
+                 Lower CI  Upper CI   OR
+Intercept            0.02      0.23 0.06
+alcconsumption       0.90      1.10 0.99
+incomeperperson      1.00      1.00 1.00
+urbanrate            0.99      1.05 1.02
