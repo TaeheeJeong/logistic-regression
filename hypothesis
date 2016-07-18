@@ -1,6 +1,6 @@
 #Report whether or not your results supported your hypothesis for the association between your primary explanatory variable and your response variable.
 
-#My hypothesis is alcol consumption is associated with life expectancy.
+#My hypothesis is alcohol consumption is associated with life expectancy.
 
 #life expectancy is my response variable. 
 #Since life expectancy is a quantitative variable, it was converted as a binary catagorical variable. 
@@ -13,7 +13,7 @@ def lifegroup(row):
 
 sub1['life_bin']=sub1.apply(lambda row:lifegroup(row),axis=1)
 
-#Then, proceed logistic regression as following with alcho consumption.
+#Then, proceed logistic regression as following with alcohol consumption.
 
 lreg1 = smf.logit(formula = 'life_bin ~ alcconsumption', data = sub2).fit()
 print (lreg1.summary())
@@ -51,6 +51,6 @@ dtype: float64
 Intercept           0.35      1.03 0.60
 alcconsumption      1.07      1.23 1.15
 
-# The p-value is 0.000. OR is 1.15. It seems that alcol consumption is significantly associated with life expectancy.
-However, when added with other variables such as income or urban rate, the p-value of alcol consumption becomes higher than 0.05. 
+# The p-value is 0.000. OR is 1.15. It seems that alcohol consumption is significantly associated with life expectancy.
+However, when added with other variables such as income or urban rate, the p-value of alcohol consumption becomes higher than 0.05. 
 This means that there is no association between the two variables. 
