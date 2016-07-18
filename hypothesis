@@ -1,0 +1,56 @@
+#Report whether or not your results supported your hypothesis for the association between your primary explanatory variable and your response variable.
+
+#My hypothesis is alcol consumption is associated with life expectancy.
+
+#life expectancy is my response variable. 
+#Since life expectancy is a quantitative variable, it was converted as a binary catagorical variable. 
+
+def lifegroup(row):
+    if row['lifeexpectancy'] < sub1['lifeexpectancy'].mean():
+        return 0
+    elif row['lifeexpectancy'] >= sub1['lifeexpectancy'].mean():
+        return 1
+
+sub1['life_bin']=sub1.apply(lambda row:lifegroup(row),axis=1)
+
+#Then, proceed logistic regression as following with alcho consumption.
+
+lreg1 = smf.logit(formula = 'life_bin ~ alcconsumption', data = sub2).fit()
+print (lreg1.summary())
+# odds ratios
+print ("Odds Ratios")
+print (np.exp(lreg1.params))
+
+# odd ratios with 95% confidence intervals
+params = lreg1.params
+conf = lreg1.conf_int()
+conf['OR'] = params
+conf.columns = ['Lower CI', 'Upper CI', 'OR']
+print (np.exp(conf))
+
+                           Logit Regression Results                           
+==============================================================================
+Dep. Variable:               life_bin   No. Observations:                  171
+Model:                          Logit   Df Residuals:                      169
+Method:                           MLE   Df Model:                            1
+Date:                Mon, 18 Jul 2016   Pseudo R-squ.:                 0.06840
+Time:                        12:19:06   Log-Likelihood:                -107.79
+converged:                       True   LL-Null:                       -115.70
+                                        LLR p-value:                 6.939e-05
+==================================================================================
+                     coef    std err          z      P>|z|      [95.0% Conf. Int.]
+----------------------------------------------------------------------------------
+Intercept         -0.5121      0.276     -1.856      0.063        -1.053     0.029
+alcconsumption     0.1370      0.037      3.701      0.000         0.064     0.210
+==================================================================================
+Odds Ratios
+Intercept        0.60
+alcconsumption   1.15
+dtype: float64
+                Lower CI  Upper CI   OR
+Intercept           0.35      1.03 0.60
+alcconsumption      1.07      1.23 1.15
+
+# The p-value is 0.000. OR is 1.15. It seems that alcol consumption is significantly associated with life expectancy.
+However, when added with other variables such as income or urban rate, the p-value of alcol consumption becomes higher than 0.05. 
+This means that there is no association between the two variables. 
