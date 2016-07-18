@@ -1,0 +1,73 @@
+# Discuss whether or not there was evidence of confounding for the association between your primary explanatory variable and the response variable.
+
+# In order to find confounding varaible, additional explanatory variables (income or urban rate) was added to the model.
+
+# logistic regression with alcohol consumption and income
+lreg2 = smf.logit(formula = 'life_bin ~ alcconsumption + incomeperperson', data = sub2).fit()
+print (lreg2.summary())
+
+# odd ratios with 95% confidence intervals
+params = lreg2.params
+conf = lreg2.conf_int()
+conf['OR'] = params
+conf.columns = ['Lower CI', 'Upper CI', 'OR']
+print (np.exp(conf))
+
+                           Logit Regression Results                           
+==============================================================================
+Dep. Variable:               life_bin   No. Observations:                  171
+Model:                          Logit   Df Residuals:                      168
+Method:                           MLE   Df Model:                            2
+Date:                Mon, 18 Jul 2016   Pseudo R-squ.:                  0.4904
+Time:                        12:22:25   Log-Likelihood:                -58.957
+converged:                       True   LL-Null:                       -115.70
+                                        LLR p-value:                 2.268e-25
+===================================================================================
+                      coef    std err          z      P>|z|      [95.0% Conf. Int.]
+-----------------------------------------------------------------------------------
+Intercept          -2.1421      0.438     -4.890      0.000        -3.001    -1.283
+alcconsumption      0.0031      0.051      0.060      0.952        -0.096     0.103
+incomeperperson     0.0011      0.000      5.117      0.000         0.001     0.001
+===================================================================================
+                 Lower CI  Upper CI   OR
+Intercept            0.05      0.28 0.12
+alcconsumption       0.91      1.11 1.00
+incomeperperson      1.00      1.00 1.00
+
+# when income variable is added, p-value of alcohol consumption becomes higher than 0.05. This indicates the association between alcohol consumption and life expectancy is not significant.
+Meanwhile, OR of income is 1.00. THis means that the model is not significant. 
+
+# logistic regression with alcohol consumption and urban rate
+lreg2 = smf.logit(formula = 'life_bin ~ alcconsumption + urbanrate', data = sub2).fit()
+print (lreg2.summary())
+
+# odd ratios with 95% confidence intervals
+params = lreg2.params
+conf = lreg2.conf_int()
+conf['OR'] = params
+conf.columns = ['Lower CI', 'Upper CI', 'OR']
+print (np.exp(conf))
+
+                           Logit Regression Results                           
+==============================================================================
+Dep. Variable:               life_bin   No. Observations:                  171
+Model:                          Logit   Df Residuals:                      168
+Method:                           MLE   Df Model:                            2
+Date:                Mon, 18 Jul 2016   Pseudo R-squ.:                  0.2893
+Time:                        12:23:52   Log-Likelihood:                -82.225
+converged:                       True   LL-Null:                       -115.70
+                                        LLR p-value:                 2.889e-15
+==================================================================================
+                     coef    std err          z      P>|z|      [95.0% Conf. Int.]
+----------------------------------------------------------------------------------
+Intercept         -3.4227      0.586     -5.846      0.000        -4.570    -2.275
+alcconsumption     0.0792      0.042      1.883      0.060        -0.003     0.162
+urbanrate          0.0624      0.010      5.972      0.000         0.042     0.083
+==================================================================================
+                Lower CI  Upper CI   OR
+Intercept           0.01      0.10 0.03
+alcconsumption      1.00      1.18 1.08
+urbanrate           1.04      1.09 1.06
+
+# when urban rate is added, the p-value of alcohol consumption is higher than 0.05, which indicates urban rate is confounding variable.
+OR of urbanrate is 1.06. so there is positive association between life expectancy and urban rate. 
